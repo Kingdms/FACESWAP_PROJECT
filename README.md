@@ -86,4 +86,4 @@ If you encounter issues with the face swap:
 
 ## Privacy Note
 
-This application processes images locally before sending them to the Segmind API. No images are stored on our servers, but they will be processed by Segmind's servers according to their privacy policy.
+This application processes images locally before sending them to the Segmind API. No images are stored on our servers, but they will be processed by Segmind's servers according to their privacy policy.# FACESWAP_PROJECT
