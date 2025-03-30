@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Swap App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Face Swap App</h1>
+        <p>Powered by Segmind Faceswap V4 API</p>
+
+        <div class="api-key-section">
+            <label for="api-key">API Key:</label>
+            <input type="text" id="api-key" placeholder="Enter your Segmind API Key">
+            <button id="save-api-key">Save API Key</button>
+        </div>
+
+        <div class="image-upload-section">
+            <div class="upload-container">
+                <h2>Source Image (Face)</h2>
+                <div class="image-preview" id="source-preview">
+                    <p>No image selected</p>
+                </div>
+                <div class="upload-options">
+                    <label class="upload-btn">
+                        Upload Image
+                        <input type="file" id="source-upload" accept="image/*">
+                    </label>
+                    <button id="source-camera" class="camera-btn">Use Camera</button>
+                </div>
+            </div>
+
+            <div class="upload-container">
+                <h2>Target Image (Background)</h2>
+                <div class="image-preview" id="target-preview">
+                    <p>No image selected</p>
+                </div>
+                <div class="upload-options">
+                    <label class="upload-btn">
+                        Upload Image
+                        <input type="file" id="target-upload" accept="image/*">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="advanced-params-section">
+            <div class="advanced-header">
+                <h2>Advanced Parameters</h2>
+                <button id="toggle-advanced" class="toggle-btn">Show</button>
+            </div>
+            
+            <div id="advanced-params" class="advanced-params-container" style="display: none;">
+                <div class="param-group">
+                    <label for="seed">Seed:</label>
+                    <div class="seed-container">
+                        <input type="number" id="seed" placeholder="Random seed" value="4208875" min="0" max="9999999">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="randomize-seed" checked>
+                            Randomize Seed
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="param-group">
+                    <label for="model-type">Model Type:</label>
+                    <select id="model-type">
+                        <option value="speed" selected>Speed</option>
+                        <option value="quality">Quality</option>
+                    </select>
+                </div>
+                
+                <div class="param-group">
+                    <label for="swap-type">Swap Type:</label>
+                    <select id="swap-type">
+                        <option value="head" selected>Head</option>
+                        <option value="face">Face</option>
+                    </select>
+                </div>
+                
+                <div class="param-group">
+                    <label for="style-type">Style Type:</label>
+                    <select id="style-type">
+                        <option value="normal" selected>Normal</option>
+                        <option value="artistic">Artistic</option>
+                    </select>
+                </div>
+                
+                <div class="param-group">
+                    <label for="image-format">Image Format:</label>
+                    <select id="image-format">
+                        <option value="png" selected>PNG</option>
+                        <option value="jpeg">JPEG</option>
+                    </select>
+                </div>
+                
+                <div class="param-group">
+                    <label for="image-quality">Image Quality:</label>
+                    <input type="range" id="image-quality" min="1" max="100" value="90">
+                    <span id="quality-value">90</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="swap-button" class="swap-btn" disabled>Swap Face</button>
+
+        <div class="result-section">
+            <h2>Result</h2>
+            <div class="image-preview" id="result-preview">
+                <p>Result will appear here</p>
+            </div>
+            <button id="download-btn" class="download-btn" disabled>Download Result</button>
+        </div>
+
+        <div id="camera-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Take a Photo</h2>
+                <video id="camera-feed" autoplay></video>
+                <button id="capture-btn">Capture</button>
+                <canvas id="capture-canvas" style="display:none;"></canvas>
+            </div>
+        </div>
+
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
